@@ -1,15 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import "../components/profile.css";
 import "../components/common.css";
 
-const Profile = () => {
+const Profile = (props) => {
+  const location = useLocation();
+  const { uname } = location.state;
   return (
-    <div className="profile-flex-container">
+    <div className={"profile-flex-container"}>
       <div className="image-container">
         <img src="/assets/image.jpg" alt="Image" />
       </div>
-      <div className="profile-container">
+      <div
+        className={`${
+          uname === "admin" ? "profile-container-admin" : "profile-container"
+        }`}
+      >
         <div className="profile-header">
           <h2>Profile</h2>
         </div>
@@ -20,6 +26,9 @@ const Profile = () => {
                 <input type="file" id="profilePhoto" accept="image/*" />
                 <div className="profile-photo-preview"></div>
               </div>
+            </div>
+            <div className="form-group">
+              <input type="text" id="username" placeholder="Username" />
             </div>
             <div className="form-group">
               <input type="text" id="firstName" placeholder="First Name" />

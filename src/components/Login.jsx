@@ -8,18 +8,19 @@ import "../components/common.css";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const username = e.target.elements.username.value;
-    const password = e.target.elements.password.value;
+    const enteredUsername = e.target.elements.username.value;
+    const enteredPassword = e.target.elements.password.value;
 
-    if (!validateUsername(username)) {
+    if (!validateUsername(enteredUsername)) {
       toast.error("Invalid username");
       return;
     }
-
-    if (!validatePassword(password)) {
+    if (!validatePassword(enteredPassword)) {
       toast.error("Invalid password");
       return;
     }
@@ -33,7 +34,15 @@ const Login = () => {
       <div className="card-body">
         <form onSubmit={handleLogin}>
           <div className="form-group">
-            <input type="text" id="username" placeholder="Username" required />
+            <input
+              type="text"
+              id="username"
+              placeholder="Username"
+              required
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            />
           </div>
           <div className="form-group">
             <input
@@ -43,9 +52,13 @@ const Login = () => {
               required
             />
           </div>
-          <button type="submit" className="btn-primary">
+          <Link
+            to="profile"
+            state={{ uname: `${username}` }}
+            className="btn-primary"
+          >
             Login
-          </button>
+          </Link>
         </form>
         <p>
           Don't have an account? <Link to="/register">register</Link>
