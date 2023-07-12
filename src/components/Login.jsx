@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { validateUsername, validatePassword } from "./validation";
 import "../components/login.css";
 import "../components/common.css";
 
@@ -10,9 +11,18 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Perform login logic here
-    // If login is successful, redirect to the profile page
-    navigate("/profile");
+    const username = e.target.elements.username.value;
+    const password = e.target.elements.password.value;
+
+    if (!validateUsername(username)) {
+      toast.error("Invalid username");
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      toast.error("Invalid password");
+      return;
+    }
   };
 
   return (
@@ -23,10 +33,15 @@ const Login = () => {
       <div className="card-body">
         <form onSubmit={handleLogin}>
           <div className="form-group">
-            <input type="text" id="username" placeholder="Username" />
+            <input type="text" id="username" placeholder="Username" required />
           </div>
           <div className="form-group">
-            <input type="password" id="password" placeholder="Password" />
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              required
+            />
           </div>
           <button type="submit" className="btn-primary">
             Login

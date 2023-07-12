@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {
+  validateEmail,
+  validateUsername,
+  validatePassword,
+} from "./validation";
 import "../components/register.css";
 import "../components/common.css";
 
@@ -11,9 +16,28 @@ const Register = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
+    const email = e.target.elements.email.value;
+    const username = e.target.elements.username.value;
+    const password = e.target.elements.password.value;
+
+    if (!validateEmail(email)) {
+      toast.error("Invalid email address");
+      return;
+    }
+
+    if (!validateUsername(username)) {
+      toast.error("Invalid username");
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      toast.error("Invalid password");
+      return;
+    }
+
     setSuccess(true);
     toast.success("Registration successful!");
-    setSuccess(false); // Reset success state to false
+    setSuccess(false);
   };
 
   const handleSignIn = () => {

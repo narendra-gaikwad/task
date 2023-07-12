@@ -9,7 +9,7 @@
 
 .card-header {
     background-color: #9370DB;
-    /* Light purple color */
+   
     padding: 10px;
     color: #fff;
     border-top-left-radius: 5px;
@@ -43,7 +43,7 @@
 
 .btn-primary {
     background-color: #9370DB;
-    /* Light purple color */
+   
     color: #fff;
     border: none;
     padding: 10px;
@@ -53,7 +53,6 @@
 
 .btn-primary:hover {
     background-color: #7B68EE;
-    /* Darker shade of purple on hover */
 }
 
 .card-body p {
@@ -62,7 +61,7 @@
 
 .card-body p a {
     color: #9370DB;
-    /* Light purple color */
+   
 }
 
 .profile-photo-container {
@@ -96,9 +95,7 @@
 
 .Toastify__toast--success {
     background-color: #2ecc71;
-    /* Green color for success */
     color: #fff;
-    /* White text color */
 }
 
 .Toastify__toast--success .Toastify__toast-body {
@@ -108,7 +105,6 @@
 
 .Toastify__toast--success .Toastify__progress-bar {
     background-color: #27ae60;
-    /* Darker shade of green for progress bar */
 }
 
 .form-group input::placeholder {
